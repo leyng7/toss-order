@@ -62,7 +62,7 @@ class PostControllerTest {
         String json = objectMapper.writeValueAsString(request);
 
         // expected
-        mockMvc.perform(post("/posts")
+        mockMvc.perform(post("/api/posts")
                         .contentType(APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isBadRequest())
@@ -85,7 +85,7 @@ class PostControllerTest {
         String json = objectMapper.writeValueAsString(request);
 
         // when
-        mockMvc.perform(post("/posts")
+        mockMvc.perform(post("/api/posts")
                         .contentType(APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
@@ -118,7 +118,7 @@ class PostControllerTest {
         postRepository.save(post);
 
         // expected
-        mockMvc.perform(get("/posts/{postId}", post.getId())
+        mockMvc.perform(get("/api/posts/{postId}", post.getId())
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(post.getId()))
@@ -149,7 +149,7 @@ class PostControllerTest {
         postRepository.saveAll(requestPosts);
 
         // expected
-        mockMvc.perform(get("/posts?page=1&size=10")
+        mockMvc.perform(get("/api/posts?page=1&size=10")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()", is(10)))
@@ -180,7 +180,7 @@ class PostControllerTest {
         postRepository.saveAll(requestPosts);
 
         // expected
-        mockMvc.perform(get("/posts?page=0&size=10")
+        mockMvc.perform(get("/api/posts?page=0&size=10")
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()", is(10)))
@@ -209,7 +209,7 @@ class PostControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(patch("/posts/{postId}", post.getId())
+        mockMvc.perform(patch("/api/posts/{postId}", post.getId())
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(postEdit)))
                 .andExpect(status().isOk())
@@ -231,7 +231,7 @@ class PostControllerTest {
         postRepository.save(post);
 
         // expected
-        mockMvc.perform(delete("/posts/{postId}", post.getId())
+        mockMvc.perform(delete("/api/posts/{postId}", post.getId())
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
@@ -241,7 +241,7 @@ class PostControllerTest {
     @DisplayName("존재하지 않는 게시글 조회")
     void test9() throws Exception {
         // expected
-        mockMvc.perform(get("/posts/{postId}", 1L)
+        mockMvc.perform(get("/api/posts/{postId}", 1L)
                         .contentType(APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andDo(print());
@@ -258,7 +258,7 @@ class PostControllerTest {
                 .build();
 
         // expected
-        mockMvc.perform(patch("/posts/{postId}", 1L)
+        mockMvc.perform(patch("/api/posts/{postId}", 1L)
                         .contentType(APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(postEdit)))
                 .andExpect(status().isNotFound())

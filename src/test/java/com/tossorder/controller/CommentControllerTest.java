@@ -79,7 +79,7 @@ class CommentControllerTest {
         String json = objectMapper.writeValueAsString(request);
 
         // expected
-        mockMvc.perform(post("/posts/{postId}/comments", post.getId())
+        mockMvc.perform(post("/api/posts/{postId}/comments", post.getId())
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(json))
                 .andDo(print())
@@ -125,7 +125,7 @@ class CommentControllerTest {
         String json = objectMapper.writeValueAsString(request);
 
         // expected
-        mockMvc.perform(post("/comments/{commentId}/delete", comment.getId())
+        mockMvc.perform(post("/api/comments/{commentId}/delete", comment.getId())
                         .contentType(MediaType.APPLICATION_JSON_VALUE)
                         .content(json))
                 .andDo(print())
