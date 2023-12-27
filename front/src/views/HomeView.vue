@@ -1,4 +1,6 @@
 <script>
+import {fetchPosts} from "@/api/posts";
+
 export default {
   data() {
     return {
@@ -32,7 +34,19 @@ export default {
       currentDate: (new Date()).toLocaleDateString()
     }
   },
-  methods: {}
+  methods: {
+    async fetchData() {
+      try {
+        const {data: posts} = await fetchPosts();
+        this.posts = posts;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  created() {
+    this.fetchData();
+  }
 }
 </script>
 
@@ -40,7 +54,7 @@ export default {
   <div class="container">
     <div class="card" v-for="post in posts" :key="post.id">
       <router-link :to="`/posts/${post.id}`">
-        <img class="thumbnail" :src="post.thumbnail" alt="{{ post.title }}"/>
+        <img class="thumbnail" :src="post.thumbnail" :alt="post.title"/>
         <div class="details">
           <div class="title">{{ post.title }}</div>
           <div class="discount-info">

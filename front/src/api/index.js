@@ -12,5 +12,5 @@ function createWithAuth(url, options) {
   return instance;
 }
 
-export const auth = create();
-export const posts = createWithAuth(`${import.meta.env.VITE_APP_API_URL}posts/`);
+export const auth = create('/auth');
+export const posts = createWithAuth('/api/posts');

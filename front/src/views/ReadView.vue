@@ -1,4 +1,5 @@
 <script>
+
 export default {
   props: ['postId'],
   data() {
@@ -10,7 +11,9 @@ export default {
       },
     }
   },
-  methods: {}
+  methods: {
+
+  }
 }
 </script>
 

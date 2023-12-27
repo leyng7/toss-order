@@ -6,7 +6,7 @@ function createNewPost(data) {
 }
 
 function fetchPosts() {
-  return posts.get('/');
+  return posts.get('');
 }
 
 function fetchPostById(id) {

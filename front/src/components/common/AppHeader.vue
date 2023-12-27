@@ -35,7 +35,6 @@ export default {
     <div>
       <router-link to="/" class="logo">
         TIL
-        <span v-if="isLoggedIn">by {{ this.$store.state.user.nickname }}</span>
       </router-link>
     </div>
     <div class="navigations">
@@ -44,7 +43,7 @@ export default {
         <router-link to="/signup">Sign Up</router-link>
       </template>
       <template v-else>
-        <a href="javascript:;" @click="logout" class="logout-button">Logout</a>
+        <a href="javascript:void(0);" @click="logout" class="logout-button">Logout</a>
       </template>
     </div>
   </header>
