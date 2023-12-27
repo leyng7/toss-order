@@ -12,9 +12,9 @@ function setInterceptors(instance) {
     config => config,
     error => {
 
-      if (error.response.status === 401) {
+      if (error.response.status === 403) {
         store.commit('LOGOUT');
-        router.push('/');
+        router.push('/login');
       }
 
       return Promise.reject(error.response)

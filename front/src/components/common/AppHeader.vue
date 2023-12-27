@@ -34,7 +34,7 @@ export default {
   <header :class="{ fixed: isFixed }" ref="appHeader">
     <div>
       <router-link to="/" class="logo">
-        TIL
+        Toss Order
       </router-link>
     </div>
     <div class="navigations">
@@ -92,8 +92,5 @@ a.logo {
 .logout-button {
   font-size: 14px;
 }
-a.router-link-exact-active {
-  color: white;
-  font-weight: bold;
-}
+
 </style>

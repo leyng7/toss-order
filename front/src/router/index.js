@@ -3,6 +3,8 @@ import HomeView from "@/views/HomeView.vue"
 import ReadView from "@/views/ReadView.vue"
 import LoginView from "@/views/LoginView.vue";
 import SignupView from "@/views/SignupView.vue";
+import ItemNewView from "@/views/ItemNewView.vue";
+import store from "@/store";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,14 +21,34 @@ const router = createRouter({
       props: true
     },
     {
+      path: '/items/new',
+      name: 'item-new',
+      component: ItemNewView,
+      beforeEnter
+    },
+    {
       path: "/login",
-      component: LoginView
+      component: LoginView,
+      beforeEnter(to, from, next) {
+        store.getters['isLoggedIn'] ? next('/') : next();
+      },
     },
     {
       path: "/signup",
-      component: SignupView
+      component: SignupView,
+      beforeEnter(to, from, next) {
+        store.getters['isLoggedIn'] ? next('/') : next();
+      },
     }
   ]
 })
+
+function beforeEnter(to, from, next) {
+  if (store.getters['isLoggedIn']) {
+    next();
+  } else {
+    next('/login');
+  }
+}
 
 export default router
