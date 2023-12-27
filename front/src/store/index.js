@@ -1,16 +1,17 @@
 import {createStore} from 'vuex';
-import {loginUser} from '@/api/auth';
+import {loginUser, logoutUser} from '@/api/auth';
 import {deleteCookie, getUserFromCookie, saveUserToCookie,} from '@/utils/cookies.js';
 
 export default createStore({
   state: {
-    user: {},
+    user: null,
   },
   mutations: {
     SET_USER(state, user) {
       state.user = user;
     },
-    LOGOUT(state) {
+    async LOGOUT(state) {
+      await logoutUser();
       state.user = null;
       deleteCookie('MEMBER');
     },

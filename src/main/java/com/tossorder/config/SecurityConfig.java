@@ -2,10 +2,7 @@ package com.tossorder.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tossorder.config.filter.EmailPasswordAuthFilter;
-import com.tossorder.config.handler.Http401Handler;
-import com.tossorder.config.handler.Http403Handler;
-import com.tossorder.config.handler.LoginFailHandler;
-import com.tossorder.config.handler.LoginSuccessHandler;
+import com.tossorder.config.handler.*;
 import com.tossorder.domain.User;
 import com.tossorder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -62,6 +59,10 @@ public class SecurityConfig {
                 .rememberMe(rm -> rm.rememberMeParameter("remember")
                         .alwaysRemember(false)
                         .tokenValiditySeconds(2592000)
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/auth/logout")
+                        .logoutSuccessHandler(new LogoutSuccessCustomHandler(objectMapper))
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();

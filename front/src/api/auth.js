@@ -9,4 +9,8 @@ function signupUser(data) {
   return auth.post('/auth/signup', data);
 }
 
-export { loginUser, signupUser };
+function logoutUser() {
+  return auth.post('/auth/logout');
+}
+
+export { loginUser, signupUser, logoutUser };
