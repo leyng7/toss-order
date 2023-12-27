@@ -1,14 +1,21 @@
-<script setup lang="ts">
-import Header from "@/components/Header.vue";
-import Content from "@/components/Content.vue";
-</script>
-
 <template>
   <div class="container">
-    <header/>
-    <content/>
+    <app-header />
+    <content />
   </div>
 </template>
+
+<script>
+import Header from "@/components/Header.vue";
+import Content from "@/components/Content.vue";
+import {defineComponent} from "vue";
+import AppHeader from "@/components/common/AppHeader.vue";
+
+export default defineComponent({
+  components: {AppHeader, Content, Header}
+})
+
+</script>
 
 <style>
 body {

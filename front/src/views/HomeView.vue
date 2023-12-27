@@ -1,22 +1,4 @@
-<template>
-  <div class="container">
-    <div class="card" v-for="post in posts" :key="post.id">
-      <router-link :to="`/posts/${post.id}`">
-        <img class="thumbnail" :src="post.thumbnail" alt="{{ post.title }}"/>
-        <div class="details">
-          <div class="title">{{ post.title }}</div>
-          <div class="discount-info">
-            <div class="discount-percentage">52%</div>
-            <div class="price">14,900원</div>
-          </div>
-          <div class="viewers">369,197명이 구경함</div>
-        </div>
-      </router-link>
-    </div>
-  </div>
-</template>
-
-<script lang="ts">
+<script>
 export default {
   data() {
     return {
@@ -53,6 +35,24 @@ export default {
   methods: {}
 }
 </script>
+
+<template>
+  <div class="container">
+    <div class="card" v-for="post in posts" :key="post.id">
+      <router-link :to="`/posts/${post.id}`">
+        <img class="thumbnail" :src="post.thumbnail" alt="{{ post.title }}"/>
+        <div class="details">
+          <div class="title">{{ post.title }}</div>
+          <div class="discount-info">
+            <div class="discount-percentage">52%</div>
+            <div class="price">14,900원</div>
+          </div>
+          <div class="viewers">369,197명이 구경함</div>
+        </div>
+      </router-link>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .container {

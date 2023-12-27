@@ -1,3 +1,19 @@
+<script>
+export default {
+  props: ['postId'],
+  data() {
+    return {
+      post: {
+        id: 1,
+        title: "웰럽 무릎/허리/발목/손목 보호대 BEST 6종 모음",
+        thumbnail: "https://post-phinf.pstatic.net/MjAxOTA0MjZfMjc2/MDAxNTU2MjE2Njc1NjAz.5GjTVBEPY0kd2SExs3uiK2eeZ1K6pCae4MwViLxf8rcg.BN2Tr6BXUaFG_IJJOB4pSFLRdHqprgQxk-ugh-W0uZ4g.JPEG/KakaoTalk_20190426_032248653.jpg?type=w800_q75"
+      },
+    }
+  },
+  methods: {}
+}
+</script>
+
 <template>
   <div class="product-container">
     <div class="product-image">
@@ -27,22 +43,6 @@
     <div class="content"></div>
   </div>
 </template>
-
-<script lang="ts">
-export default {
-  props: ['postId'],
-  data() {
-    return {
-      post: {
-        id: 1,
-        title: "웰럽 무릎/허리/발목/손목 보호대 BEST 6종 모음",
-        thumbnail: "https://post-phinf.pstatic.net/MjAxOTA0MjZfMjc2/MDAxNTU2MjE2Njc1NjAz.5GjTVBEPY0kd2SExs3uiK2eeZ1K6pCae4MwViLxf8rcg.BN2Tr6BXUaFG_IJJOB4pSFLRdHqprgQxk-ugh-W0uZ4g.JPEG/KakaoTalk_20190426_032248653.jpg?type=w800_q75"
-      },
-    }
-  },
-  methods: {}
-}
-</script>
 
 <style scoped>
 .image {
