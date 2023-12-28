@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    <app-header />
-    <content />
-  </div>
+  <v-app>
+    <app-header/>
+    <content/>
+  </v-app>
 </template>
 
 <script>
@@ -23,16 +23,5 @@ body {
   "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
   "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
   sans-serif;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-
-.container {
-  max-width: 1300px;
-  margin: auto;
 }
 </style>
