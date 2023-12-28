@@ -1,13 +1,26 @@
+import CryptoJS from 'crypto-js';
+
+const encryptionKey = 'lF7B4QDkh0cuo0J';
 
 function saveUserToCookie(value) {
-  document.cookie = `MEMBER=${value}`;
+  const jsonValue = JSON.stringify(value);
+  const encryptedValue = CryptoJS.AES.encrypt(jsonValue, encryptionKey).toString();
+  document.cookie = `MEMBER=${encryptedValue}`;
 }
 
 function getUserFromCookie() {
-  return document.cookie.replace(
+  const value = document.cookie.replace(
     /(?:(?:^|.*;\s*)MEMBER\s*=\s*([^;]*).*$)|^.*$/,
     '$1',
   );
+
+  if (!value) {
+    return null;
+  }
+
+  const bytes = CryptoJS.AES.decrypt(value, encryptionKey);
+  const decryptedValue = bytes.toString(CryptoJS.enc.Utf8);
+  return JSON.parse(decryptedValue);
 }
 
 function deleteCookie(value) {

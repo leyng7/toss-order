@@ -8,30 +8,19 @@ export default {
   data() {
     return {
       navHeight: 0,
-      isFixed: false,
     };
   },
   methods: {
     logout() {
-      this.$store.commit('LOGOUT');
+      this.$store.dispatch('LOGOUT');
       this.$router.push('/');
     },
-  },
-  mounted() {
-    if (this.$route.name !== 'main') {
-      return;
-    }
-    this.navHeight = this.$refs.appHeader.offsetHeight;
-
-  },
-  beforeDestroy() {
-
   },
 };
 </script>
 
 <template>
-  <header :class="{ fixed: isFixed }" ref="appHeader">
+  <header ref="appHeader">
     <div>
       <router-link to="/" class="logo">
         Toss Order

@@ -30,7 +30,7 @@ import static org.springframework.boot.autoconfigure.security.servlet.PathReques
 
 @Slf4j
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 @RequiredArgsConstructor
 public class SecurityConfig {
 

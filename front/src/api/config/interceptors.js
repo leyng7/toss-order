@@ -10,11 +10,11 @@ function setInterceptors(instance) {
   );
   instance.interceptors.response.use(
     config => config,
-    error => {
+    async error => {
 
       if (error.response.status === 403) {
-        store.commit('LOGOUT');
-        router.push('/login');
+        await store.dispatch('LOGOUT');
+        await router.push('/login');
       }
 
       return Promise.reject(error.response)

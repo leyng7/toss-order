@@ -4,16 +4,16 @@ import {deleteCookie, getUserFromCookie, saveUserToCookie,} from '@/utils/cookie
 
 export default createStore({
   state: {
-    user: null,
+    user: getUserFromCookie() || '',
+  },
+  getters: {
+    isLoggedIn(state) {
+      return !!state.user;
+    },
   },
   mutations: {
     SET_USER(state, user) {
       state.user = user;
-    },
-    async LOGOUT(state) {
-      await logoutUser();
-      state.user = null;
-      deleteCookie('MEMBER');
     },
   },
   actions: {
@@ -23,12 +23,12 @@ export default createStore({
         email: data.email
       }
       commit('SET_USER', user);
-      saveUserToCookie(user.email);
+      saveUserToCookie(user);
     },
-  },
-  getters: {
-    isLoggedIn(state) {
-      return !!state.user || getUserFromCookie();
+    async LOGOUT({commit}, data) {
+      await logoutUser();
+      commit('SET_USER', );
+      deleteCookie('MEMBER');
     },
   },
 });
