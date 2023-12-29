@@ -25,7 +25,17 @@ export default {
 </script>
 
 <template>
-  <v-row>
+  <v-tabs
+      :center-active="true"
+  >
+    <v-tab min-width="0">전체</v-tab>
+    <v-tab min-width="0">식품</v-tab>
+    <v-tab min-width="0">생활</v-tab>
+    <v-tab min-width="0">음료</v-tab>
+    <v-tab min-width="0">건강식품</v-tab>
+    <v-tab min-width="0">뷰티</v-tab>
+  </v-tabs>
+  <v-row class="mt-1">
     <v-col v-for="post in posts" :key="post.id" cols="12" sm="12" md="6" xl="4">
       <v-card :to="`/posts/${post.id}`" class="card">
         <v-img

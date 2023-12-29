@@ -2,7 +2,7 @@
   <v-app>
     <app-header/>
     <v-main>
-      <v-container>
+      <v-container class="pt-0">
         <content/>
       </v-container>
     </v-main>
