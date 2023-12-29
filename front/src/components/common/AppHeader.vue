@@ -38,9 +38,7 @@ export default {
       <v-icon>mdi-shopping-outline</v-icon>
     </template>
 
-    <v-toolbar-title class="ml-2" style="cursor: pointer" @click="$router.push('/')">
-      토스오더
-    </v-toolbar-title>
+    <v-toolbar-title class="ml-2">토스오더</v-toolbar-title>
 
     <v-spacer></v-spacer>
     <v-btn :icon="true" @click="dialog = true">
@@ -48,7 +46,7 @@ export default {
     </v-btn>
   </v-app-bar>
 
-  <search-dialog v-model="dialog" @close-dialog="handleCloseDialog"/>
+  <search-dialog :dialog="dialog" @close-dialog="handleCloseDialog"/>
 
 
   <!--  <header ref="appHeader">

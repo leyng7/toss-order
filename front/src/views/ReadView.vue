@@ -4,6 +4,7 @@ export default {
   props: ['postId'],
   data() {
     return {
+      tab: null,
       post: {
         id: 1,
         title: "웰럽 무릎/허리/발목/손목 보호대 BEST 6종 모음",
@@ -11,18 +12,20 @@ export default {
       },
     }
   },
-  methods: {
-
-  }
+  methods: {}
 }
 </script>
 
 <template>
-  <div class="product-container">
-    <div class="product-image">
-      <img class="image" :src="post.thumbnail" :alt="post.title">
-    </div>
-    <div class="product-info">
+  <v-card>
+    <v-img
+        src="https://post-phinf.pstatic.net/MjAxOTA0MjZfMjc2/MDAxNTU2MjE2Njc1NjAz.5GjTVBEPY0kd2SExs3uiK2eeZ1K6pCae4MwViLxf8rcg.BN2Tr6BXUaFG_IJJOB4pSFLRdHqprgQxk-ugh-W0uZ4g.JPEG/KakaoTalk_20190426_032248653.jpg?type=w800_q75"
+        :alt="post.title"
+        :cover="true"
+        height="400px"
+        class="thumbnail"
+    ></v-img>
+    <v-card-text class="details">
       <div class="brand">매일유업</div>
       <div class="product-name">아몬드 브리즈</div>
       <div class="viewers">377,879명 구경함</div>
@@ -38,25 +41,47 @@ export default {
         <div class="star-icons">⭐⭐⭐⭐⭐</div>
         <div class="average-rating">4.8</div>
       </div>
-    </div>
-    <div class="tabs">
-      <div class="tab active">정보</div>
-      <div class="tab">리뷰</div>
-    </div>
-    <div class="content"></div>
-  </div>
+    </v-card-text>
+  </v-card>
+  <v-tabs
+      v-model="tab"
+      align-tabs="center"
+  >
+    <v-tab :value="1">정보</v-tab>
+    <v-tab :value="2">리뷰</v-tab>
+  </v-tabs>
+  <v-container v-if="tab === 1">
+    <v-row>
+      <v-col
+          v-for="i in 6"
+          :key="i"
+          cols="12"
+          md="4"
+      >
+        <v-img
+            :src="`https://picsum.photos/500/300?image=${i * 1 * 5 + 10}`"
+            :lazy-src="`https://picsum.photos/10/6?image=${i * 1 * 5 + 10}`"
+        ></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
+  <v-container v-if="tab === 2">
+    <v-row>리뷰 100개</v-row>
+    <v-row>
+      <div>⭐⭐⭐⭐⭐</div>
+      <div>4.4</div>
+    </v-row>
+    <v-row>
+      <v-col v-for="i in 5" :key="i" cols="12" md="6" lg="4" xl="3">
+        <div>⭐⭐⭐⭐⭐</div>
+        <small class="text-grey-darken-1">23.9.7 장** / 나무팩토리 하트형 고주파 얼굴마사지기 / 1개</small>
+        <div class="text-grey-lighten-1">오자마자 해봤는데 시원하고 좋더라구요~<br/>싸게 잘산듯.<br/>집에 디바이스 여러개 있는데 자주 손이 갈 것 같아요.</div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <style scoped>
-.image {
-  width: 100%;
-  max-height: 600px;
-  object-fit: cover;
-}
-
-.product-info {
-  padding: 5px;
-}
 
 .brand {
   font-size: 0.9rem;
@@ -111,11 +136,13 @@ export default {
 
 .tabs {
   display: flex;
+
   .tab {
     flex-grow: 1;
     text-align: center;
     padding: 10px;
   }
+
   .active {
     border-bottom: black 1px solid;
   }

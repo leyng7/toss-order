@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <app-header/>
-    <content/>
+    <v-main>
+      <v-container>
+        <content/>
+      </v-container>
+    </v-main>
   </v-app>
 </template>
 

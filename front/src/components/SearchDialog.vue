@@ -2,7 +2,7 @@
 export default {
   name: "SearchDialog",
   props: {
-    value: Boolean,
+    dialog: Boolean,
   },
   data() {
     return {
@@ -16,13 +16,16 @@ export default {
     closeDialog() {
       this.$emit("close-dialog");
     },
-  }
+    handleRecentSearch(event) {
+      this.searchText = event.target.innerText;
+    }
+  },
 }
 </script>
 
 <template>
   <v-dialog
-      :value="value"
+      :model-value="dialog"
       transition="dialog-bottom-transition"
       :fullscreen="true"
       @click:outside="closeDialog"
@@ -34,6 +37,7 @@ export default {
           <v-icon>mdi-keyboard-backspace</v-icon>
         </v-btn>
         <v-text-field
+            :autofocus="true"
             v-model="searchText"
             prepend-inner-icon="mdi-magnify"
             label="상품을 검색해보세요"
@@ -42,9 +46,17 @@ export default {
             @click:append-inner="handleClose"
         ></v-text-field>
       </v-toolbar>
-      <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-      </v-card-text>
+      <v-container>
+        <div class="d-flex justify-space-between pa-1">
+          <div>최근 검색어</div>
+          <div class="text-grey-darken-1">삭제하기</div>
+        </div>
+        <v-row class="ga-2 mt-2">
+          <v-chip :link="true" @click="handleRecentSearch">라면</v-chip>
+          <v-chip :link="true" @click="handleRecentSearch">슬리퍼</v-chip>
+          <v-chip :link="true" @click="handleRecentSearch">콜라</v-chip>
+        </v-row>
+      </v-container>
     </v-card>
   </v-dialog>
 </template>
